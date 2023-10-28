@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 
 export default function TextForm(props) {
     const [text, setText] = useState("Enter text here");
-    const [wordCount, setWordCount] = useState(0);
     const [myStyle, setMyStyle] = useState({
         backgroundColor: 'white',
         color: 'black'
@@ -50,24 +49,9 @@ export default function TextForm(props) {
         document.querySelector('.vowelCount').innerHTML = `Vowels Count: ${vowelCount}`;
     }
 
-    const handleWordCount = () => {
-        let count = 0
-        text.split('').forEach((char, index) => {
-            if(char === ' ' && text[index+1] !== ' ')
-                count+=1;
-        })
-        return count;
-    }
-
-    const updateCounts = () =>{
-        const words = handleWordCount();
-        setWordCount(words);
-    }
-
     const handleOnChange = (event) => {
         // console.log('On change');
         setText(event.target.value);
-        updateCounts();
     }
 
     const handleCopy = () => {
@@ -99,7 +83,7 @@ export default function TextForm(props) {
             </div>
             <div className='container my-3 textSummary'>
                 <h1>Your Text Summary</h1>
-                <p>{wordCount} <span className='wordCount'></span> words and {text.length} characters</p>
+                <p>{text.split(" ").filter((char) =>{return char.length !== 0}).length} <span className='wordCount'></span> words and {text.length} characters</p>
                 <p>{0.08 * text.split(' ').length} Minutes of Read.</p>
                 <p className='vowelCount'></p>
                 <h2>Preview</h2>
