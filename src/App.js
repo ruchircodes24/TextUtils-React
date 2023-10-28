@@ -44,7 +44,7 @@ function App() {
             exact path="/"
             element={<TextForm heading="Enter Text to Analyse" displayAlert={displayAlert} />}
           />
-          <Route exact path="/about" element={<About />} />
+          <Route exact path="/about" element={<About mode = {mode}/>} />
         </Routes>
       </Router>
      

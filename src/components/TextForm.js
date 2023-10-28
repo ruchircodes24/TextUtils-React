@@ -73,21 +73,21 @@ export default function TextForm(props) {
                 <div className="mb-3">
                     <textarea className="form-control" id="myBox" rows="8" value={text} onChange={handleOnChange} style={myStyle}></textarea>
                 </div>
-                <button className='btn btn-primary mx-1 ' onClick={handleUpClick}>Convert To UpperCase</button>
-                <button className='btn btn-primary mx-1' onClick={handleLoClick}>Convert To LowerCase</button>
-                <button className='btn btn-primary mx-1' onClick={countVowels}>Count Vowels</button>
-                <button className='btn btn-primary mx-1' onClick={handleCopy}>Copy Text</button>
-                <button className='btn btn-primary mx-1' onClick={handleExtraSpaces}>Clear extra spaces</button>
-                <button className='btn btn-primary my-1 mx-1' onClick={handleClearClick}>Clear Text</button>
+                <button disabled = {text.length===0} className='btn btn-primary mx-1 my-1 ' onClick={handleUpClick}>Convert To UpperCase</button>
+                <button disabled = {text.length===0} className='btn btn-primary mx-1 my-1' onClick={handleLoClick}>Convert To LowerCase</button>
+                <button disabled = {text.length===0} className='btn btn-primary mx-1 my-1' onClick={countVowels}>Count Vowels</button>
+                <button disabled = {text.length===0} className='btn btn-primary mx-1 my-1' onClick={handleCopy}>Copy Text</button>
+                <button disabled = {text.length===0} className='btn btn-primary mx-1 my-1' onClick={handleExtraSpaces}>Clear extra spaces</button>
+                <button disabled = {text.length===0} className='btn btn-primary my-1 mx-1' onClick={handleClearClick}>Clear Text</button>
                 <button className='btn btn-primary my-1 mx-1' onClick={handleToggleStyle}>{btnText}</button>
             </div>
             <div className='container my-3 textSummary'>
                 <h1>Your Text Summary</h1>
                 <p>{text.split(" ").filter((char) =>{return char.length !== 0}).length} <span className='wordCount'></span> words and {text.length} characters</p>
-                <p>{0.08 * text.split(' ').length} Minutes of Read.</p>
+                <p>{0.08 * text.split('').filter((char) =>{return char.length !== 0}).length} Minutes of Read.</p>
                 <p className='vowelCount'></p>
                 <h2>Preview</h2>
-                <p>{text}</p>
+                <p>{text.length===0? 'Nothing to Preview' : text}</p>
             </div>     
         </>
     )
